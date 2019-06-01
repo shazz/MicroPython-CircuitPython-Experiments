@@ -18,8 +18,6 @@
 
 ![Diagram](https://raw.githubusercontent.com/shazz/MicroPython-CircuitPython-Experiments/master/wiki/images/pygamer/samd51_clks.png)
 
-Source: [clocks.c](https://github.com/adafruit/samd-peripherals/blob/83a4759d186574d8034435cd2303def85e4ed793/samd/samd51/clocks.c)
-
  * Clock sources controlled by `OSCCTRL` and `OSC32KCTRL`
  * Generic Clock Controller `GCLK`:
    * Generic Clock Generators: `0` (`GCLK_MAIN`) generates the clock signal `GCLK_MAIN`, which is used by the Power Manager and the Main Clock (`MCLK`)
@@ -49,6 +47,10 @@ Source: [clocks.c](https://github.com/adafruit/samd-peripherals/blob/83a4759d186
 
 ![Diagram](https://raw.githubusercontent.com/shazz/MicroPython-CircuitPython-Experiments/master/wiki/images/pygamer/mclk.png)
 
+Default values:
+ * CPU Clock Source: Generic Clock Generator 0
+ * CPU Clock prescaler: 1
+
 [hpl_mclk_config.h](https://github.com/adafruit/circuitpython/blob/master/ports/atmel-samd/asf4_conf/samd51/hpl_mclk_config.h)
 ````C
 // CPU Clock source: <GCLK_PCHCTRL_GEN_GCLK0_Val"> Generic clock generator 0
@@ -59,11 +61,46 @@ Source: [clocks.c](https://github.com/adafruit/samd-peripherals/blob/83a4759d186
 #define CONF_MCLK_CPUDIV MCLK_CPUDIV_DIV_DIV1_Val
 ````
 
-Generic Clock Generator 0 is defined with:
- * DPLL0 as source
- * DIVision factor  = 1
- * DIVide SELection = 0
- * output enabled and generator enabled
+#### Clocks init
+
+Default Division Selection = 1 (only used if divisor > 255) else = 0
+
+Source: [gclk.h](https://github.com/adafruit/asf4/blob/039b5f3bbc3f4ba4421e581db290560d59fef625/samd51/include/component/gclk.h)
+````C
+#define GCLK_GENCTRL_DIVSEL_Pos     12           /**< \brief (GCLK_GENCTRL) Divide Selection */
+#define GCLK_GENCTRL_DIVSEL         (_U_(0x1) << GCLK_GENCTRL_DIVSEL_Pos)
+````
+
+Source: [clocks.c](https://github.com/adafruit/samd-peripherals/blob/83a4759d186574d8034435cd2303def85e4ed793/samd/samd51/clocks.c)
+````C
+static void enable_clock_generator_sync(uint8_t gclk, uint32_t source, uint16_t divisor, bool sync) {
+    uint32_t divsel = 0;
+    // The datasheet says 8 bits and max value of 512, how is that possible?
+    if (divisor > 255) { // Generator 1 has 16 bits
+        divsel = GCLK_GENCTRL_DIVSEL;
+        for (int i = 15; i > 0; i--) {
+            if (divisor & (1 << i)) {
+                divisor = i - 1;
+                break;
+            }
+        }
+    }
+
+    GCLK->GENCTRL[gclk].reg = GCLK_GENCTRL_SRC(source) | GCLK_GENCTRL_DIV(divisor) | divsel | GCLK_GENCTRL_OE | GCLK_GENCTRL_GENEN;
+    if (sync)
+        while ((GCLK->SYNCBUSY.vec.GENCTRL & (1 << gclk)) != 0) {}
+}
+````
+
+#### GCLKn
+
+Set Generic Clock Generators:
+ * `0`: source: `DPLL0`, divisor: `1`
+ * `1`: source: `DFLL`, divisor: `1`
+ * `4`: source: `DPLL0`, divisor: `1`
+ * `5`: source: `DFLL`, divisor: `24`. The Digital Frequency-Locked Loop (`DFLL48M`) has a 48 MHz output frequency
+
+[gclk.h](https://github.com/adafruit/asf4/blob/039b5f3bbc3f4ba4421e581db290560d59fef625/samd51/include/component/gclk.h) 
 ````C
 /* -------- GCLK_GENCTRL : (GCLK Offset: 0x20) (R/W 32) Generic Clock Generator Control -------- */
 #if !(defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__))
@@ -83,25 +120,21 @@ typedef union {
   uint32_t reg;                /*!< Type      used for register access              */
 } GCLK_GENCTRL_Type;
 #endif /* !(defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__)) */
+````
 
+Default mappings:
+ * `DFLL`: Generic Clock Generator 3
+ * `DPLL0`: Generic Clock Generator 5
+ * `DPLL1`: 32kHz External Crystal Oscillator (`XOSC32K`)
+
+[hpl_oscctrl_config.h)](https://github.com/adafruit/circuitpython/blob/master/ports/atmel-samd/asf4_conf/samd51/hpl_oscctrl_config.h)
+````C
+#define CONF_DFLL_GCLK GCLK_PCHCTRL_GEN_GCLK3_Val
 #define CONF_FDPLL0_GCLK GCLK_PCHCTRL_GEN_GCLK5_Val
+#define CONF_FDPLL1_GCLK GCLK_GENCTRL_SRC_XOSC32K
+````
 
-# set Generic Clock Generator Control 0 which generates GCLK_MAIN
-GCLK->GENCTRL[0].reg = GCLK_GENCTRL_SRC(GCLK_GENCTRL_SRC_DPLL0_Val=0x7) | 
-                       GCLK_GENCTRL_DIV(1)=1<<16 | 
-                       divsel=0 | 
-                       GCLK_GENCTRL_OE | 
-                       GCLK_GENCTRL_GENEN;
-````    
-
-#### GCLKn
-
-Set Generic Clock Generators:
- * `0`: source: `DPLL0`, divisor: `1`
- * `1`: source: `DFLL`, divisor: `1`
- * `4`: source: `DPLL0`, divisor: `1`
- * `5`: source: `DFLL`, divisor: `24`. The Digital Frequency-Locked Loop (`DFLL48M`) has a 48 MHz output frequency
-
+Source: [clocks.c](https://github.com/adafruit/samd-peripherals/blob/83a4759d186574d8034435cd2303def85e4ed793/samd/samd51/clocks.c)
 ````C
 void clock_init(void) {
     // DFLL48M is enabled by default
@@ -126,6 +159,26 @@ void clock_init(void) {
     init_dynamic_clocks();
 }
 ````
+
+Means:
+````C
+
+# set Generic Clock Generator Control 0 which generates GCLK_MAIN
+GCLK->GENCTRL[0].reg = GCLK_GENCTRL_SRC(GCLK_GENCTRL_SRC_DPLL0_Val=0x7) | 
+                       GCLK_GENCTRL_DIV(1)=1<<16 | 
+                       divsel=0 | 
+                       GCLK_GENCTRL_OE | 
+                       GCLK_GENCTRL_GENEN;
+                       
+# set Generic Clock Generator Control 0 which generates GCLK_MAIN
+GCLK->GENCTRL[5].reg = GCLK_GENCTRL_SRC(GCLK_GENCTRL_SRC_DFLL_Val=0x6) | 
+                       GCLK_GENCTRL_DIV(24)=24<<16 | 
+                       divsel=0 | 
+                       GCLK_GENCTRL_OE | 
+                       GCLK_GENCTRL_GENEN;                       
+                       
+````    
+
 
 #### DPLL
 
