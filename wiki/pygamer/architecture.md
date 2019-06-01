@@ -193,6 +193,17 @@ GCLK->GENCTRL[5].reg = GCLK_GENCTRL_SRC(GCLK_GENCTRL_SRC_DFLL_Val=0x6) |
  * `LDRFRAC` = 0
  => `DPLL0` = 2 * 60 = 120 Mhz
 
+Source: [oscctrl.h](https://github.com/adafruit/asf4/blob/039b5f3bbc3f4ba4421e581db290560d59fef625/samd51/include/component/oscctrl.h)
+````C
+#define OSCCTRL_DPLLCTRLB_REFCLK_Pos 5            /**< \brief (OSCCTRL_DPLLCTRLB) Reference Clock Selection */
+#define OSCCTRL_DPLLCTRLB_REFCLK_Msk (_U_(0x7) << OSCCTRL_DPLLCTRLB_REFCLK_Pos)
+#define OSCCTRL_DPLLCTRLB_REFCLK(value) (OSCCTRL_DPLLCTRLB_REFCLK_Msk & ((value) << OSCCTRL_DPLLCTRLB_REFCLK_Pos))
+#define   OSCCTRL_DPLLCTRLB_REFCLK_GCLK_Val _U_(0x0)   /**< \brief (OSCCTRL_DPLLCTRLB) Dedicated GCLK clock reference */
+#define   OSCCTRL_DPLLCTRLB_REFCLK_XOSC32_Val _U_(0x1)   /**< \brief (OSCCTRL_DPLLCTRLB) XOSC32K clock reference */
+#define   OSCCTRL_DPLLCTRLB_REFCLK_XOSC0_Val _U_(0x2)   /**< \brief (OSCCTRL_DPLLCTRLB) XOSC0 clock reference */
+#define   OSCCTRL_DPLLCTRLB_REFCLK_XOSC1_Val _U_(0x3)   /**< \brief (OSCCTRL_DPLLCTRLB) XOSC1 clock reference */
+````
+
 ````
 static void init_clock_source_dpll0(void)
 {
