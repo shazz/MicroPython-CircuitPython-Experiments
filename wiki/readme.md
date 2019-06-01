@@ -1,7 +1,7 @@
 Here are my wiki pages on:
 
- - the Kittenbot [Meowbit](wiki/meowbit/)
- - the Adafruit [Pygamer](wiki/pygamer/)
- - [MicroPython](wiki/MicroPython)
- - [CircuitPython](wiki/CircuitPython)
- - [Cortex M4](wiki/ARM) ARM assembly
+ - the Kittenbot [Meowbit](meowbit/)
+ - the Adafruit [Pygamer](pygamer/)
+ - [MicroPython](MicroPython)
+ - [CircuitPython](CircuitPython)
+ - [Cortex M4](ARM) ARM assembly
