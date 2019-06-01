@@ -1,6 +1,6 @@
 ## MCU Architecture Diagram
 
-![Diagram](https://raw.githubusercontent.com/shazz/MicroPython-CircuitPython-Experiments/master/wiki/pdfs/diagram.png)
+![Diagram](https://raw.githubusercontent.com/shazz/MicroPython-CircuitPython-Experiments/master/wiki/images/pygamer/diagram.png)
 
 ## Details
 
@@ -45,6 +45,8 @@ atmel-samd/asf4_conf/samd51/hpl_gclk_config.h  :
 #endif
 ````
 
+#### MCLK
+
 ![Diagram](https://raw.githubusercontent.com/shazz/MicroPython-CircuitPython-Experiments/master/wiki/images/pygamer/mclk.png)
 
 
@@ -83,6 +85,8 @@ GCLK->GENCTRL[0].reg = GCLK_GENCTRL_SRC(GCLK_GENCTRL_SRC_DPLL0_Val=0x7) |
                        GCLK_GENCTRL_GENEN;
 ````    
 
+#### GCLKn
+
 Set Generic Clock Generators:
  * 0: source: DPLL0, divisor: 1
  * 1: source: DFLL, divisor: 1
@@ -113,6 +117,8 @@ void clock_init(void) {
     init_dynamic_clocks();
 }
 ````
+
+#### DPLL
 
 ![Diagram](https://raw.githubusercontent.com/shazz/MicroPython-CircuitPython-Experiments/master/wiki/images/pygamer/dpll.png)
 
