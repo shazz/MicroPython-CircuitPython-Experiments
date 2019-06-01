@@ -37,10 +37,6 @@ Source: [hpl_gclk_config.h](https://github.com/adafruit/circuitpython/blob/maste
 // <GCLK_GENCTRL_SRC_DFLL"> Digital Frequency Locked Loop (DFLL48M)
 // <GCLK_GENCTRL_SRC_DPLL0"> Digital Phase Locked Loop (DPLL0)
 // <GCLK_GENCTRL_SRC_DPLL1"> Digital Phase Locked Loop (DPLL1)
-
-#ifndef CONF_GCLK_GEN_0_SOURCE
-#define CONF_GCLK_GEN_0_SOURCE GCLK_GENCTRL_SRC_DPLL0
-#endif
 ````
 
 #### MCLK
@@ -94,6 +90,25 @@ static void enable_clock_generator_sync(uint8_t gclk, uint32_t source, uint16_t 
 
 #### GCLKn
 
+Default mappings:
+ * `DPLL0`: Generic Clock Generator 0
+ * `DFLL`: Generic Clock Generator 3
+ * `DPLL0`: Generic Clock Generator 5
+ * `DPLL1`: 32kHz External Crystal Oscillator (`XOSC32K`)
+
+Source: [hpl_gclk_config.h](https://github.com/adafruit/circuitpython/blob/master/ports/atmel-samd/asf4_conf/samd51/hpl_gclk_config.h)  : 
+````C
+#define CONF_GCLK_GEN_0_SOURCE GCLK_GENCTRL_SRC_DPLL0
+#edif
+````
+
+Source: [hpl_oscctrl_config.h](https://github.com/adafruit/circuitpython/blob/master/ports/atmel-samd/asf4_conf/samd51/hpl_oscctrl_config.h)
+````C
+#define CONF_DFLL_GCLK GCLK_PCHCTRL_GEN_GCLK3_Val
+#define CONF_FDPLL0_GCLK GCLK_PCHCTRL_GEN_GCLK5_Val
+#define CONF_FDPLL1_GCLK GCLK_GENCTRL_SRC_XOSC32K
+````
+
 Set Generic Clock Generators:
  * `0`: source: `DPLL0`, divisor: `1`
  * `1`: source: `DFLL`, divisor: `1`
@@ -120,18 +135,6 @@ typedef union {
   uint32_t reg;                /*!< Type      used for register access              */
 } GCLK_GENCTRL_Type;
 #endif /* !(defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__)) */
-````
-
-Default mappings:
- * `DFLL`: Generic Clock Generator 3
- * `DPLL0`: Generic Clock Generator 5
- * `DPLL1`: 32kHz External Crystal Oscillator (`XOSC32K`)
-
-[hpl_oscctrl_config.h)](https://github.com/adafruit/circuitpython/blob/master/ports/atmel-samd/asf4_conf/samd51/hpl_oscctrl_config.h)
-````C
-#define CONF_DFLL_GCLK GCLK_PCHCTRL_GEN_GCLK3_Val
-#define CONF_FDPLL0_GCLK GCLK_PCHCTRL_GEN_GCLK5_Val
-#define CONF_FDPLL1_GCLK GCLK_GENCTRL_SRC_XOSC32K
 ````
 
 Source: [clocks.c](https://github.com/adafruit/samd-peripherals/blob/83a4759d186574d8034435cd2303def85e4ed793/samd/samd51/clocks.c)
@@ -170,7 +173,7 @@ GCLK->GENCTRL[0].reg = GCLK_GENCTRL_SRC(GCLK_GENCTRL_SRC_DPLL0_Val=0x7) |
                        GCLK_GENCTRL_OE | 
                        GCLK_GENCTRL_GENEN;
                        
-# set Generic Clock Generator Control 0 which generates GCLK_MAIN
+# set Generic Clock Generator Control 5 which generates
 GCLK->GENCTRL[5].reg = GCLK_GENCTRL_SRC(GCLK_GENCTRL_SRC_DFLL_Val=0x6) | 
                        GCLK_GENCTRL_DIV(24)=24<<16 | 
                        divsel=0 | 
