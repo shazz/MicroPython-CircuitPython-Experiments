@@ -16,7 +16,7 @@
 
 #### Diagram
 
-![Diagram](https://raw.githubusercontent.com/shazz/MicroPython-CircuitPython-Experiments/master/wiki/images/pygamer/clocks.png)
+![Diagram](https://raw.githubusercontent.com/shazz/MicroPython-CircuitPython-Experiments/master/wiki/images/pygamer/samd51_clks.png)
 
 Source: [clocks.c](https://github.com/adafruit/samd-peripherals/blob/83a4759d186574d8034435cd2303def85e4ed793/samd/samd51/clocks.c)
 
