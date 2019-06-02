@@ -116,7 +116,7 @@ Set Generic Clock Generators:
  * `4`: source: `DPLL0`, divisor: `1`
  * `5`: source: `DFLL`, divisor: `24`. The Digital Frequency-Locked Loop (`DFLL48M`) has a 48 MHz output frequency
 
-[gclk.h](https://github.com/adafruit/asf4/blob/039b5f3bbc3f4ba4421e581db290560d59fef625/samd51/include/component/gclk.h) 
+Source: [gclk.h](https://github.com/adafruit/asf4/blob/039b5f3bbc3f4ba4421e581db290560d59fef625/samd51/include/component/gclk.h) 
 ````C
 /* -------- GCLK_GENCTRL : (GCLK Offset: 0x20) (R/W 32) Generic Clock Generator Control -------- */
 #if !(defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__))
@@ -221,3 +221,20 @@ static void init_clock_source_dpll0(void)
     while (!(OSCCTRL->Dpll[0].DPLLSTATUS.bit.LOCK || OSCCTRL->Dpll[0].DPLLSTATUS.bit.CLKRDY)) {}
 }
 ````
+
+#### Overclocking
+
+![Diagram](https://raw.githubusercontent.com/shazz/MicroPython-CircuitPython-Experiments/master/wiki/images/pygamer/clk_main.png)
+
+The datasheet says:
+ * max(`fGCLK_MAIN`): 200 Mhz (`GCLK_MAIN` sets CPU, AHB and APBx clocks)
+ * max(`fCPU`): 120 Mhz 
+ * max(`fAHB`): 120 Mhz
+ * max(`fAPBx`): 120 Mhz
+ * max(`fGCLK_DPLLx`): 3.2 Mhz
+ * max(`fGCLK_DFLL48M_REF`): 33 Khz (What ???)
+ 
+Notes
+ * "GCLK Generator 0 output frequency must not exceed the AHB clock frequency" but `fGCLK_MAIN` is given by GCLKGen0... ???
+ * `fHS` for peripherals is derived from `GCLK_MAIN` divided by `HSDIV`, so it may have some impacts.
+ * "The DFLL48M requires a reference clock (GCLK_DFLL48M_REF) from the GCLK": not sure what it means...
