@@ -1,4 +1,4 @@
-## ATSAM51D MCU Architecture Diagram
+## ATSAM51D MCU Clocks Architecture
 
 ![Diagram](https://raw.githubusercontent.com/shazz/MicroPython-CircuitPython-Experiments/master/wiki/images/pygamer/diagram.png)
 
