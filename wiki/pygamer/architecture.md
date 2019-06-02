@@ -12,7 +12,7 @@
  * `XOSC`: Up to two 8 MHz to 48 MHz crystal oscillator
  * `OSCULP32K`: 32.768 kHz ultra low-power internal oscillator
  * `DFLL48M`: 48 MHz Digital Frequency Locked Loop
- * `FDPLL200M`: Two 96-200 MHz (output frequency) Fractional Digital Phased Locked Loop, from a 32 kHz to 3.2 MHz reference clock
+ * `FDPLL200M`: Two 96-200 MHz (output frequency) Fractional Digital Phased Locked Loop, from a 32 kHz to 3.2 MHz reference clock (GCLK_DPLLx or GCLK_DPLLx_32K)
 
 #### Diagram
 
