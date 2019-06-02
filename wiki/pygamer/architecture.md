@@ -1,4 +1,4 @@
-## MCU Architecture Diagram
+## ATSAM51D MCU Architecture Diagram
 
 ![Diagram](https://raw.githubusercontent.com/shazz/MicroPython-CircuitPython-Experiments/master/wiki/images/pygamer/diagram.png)
 
@@ -50,6 +50,7 @@ Default values:
 Source: [hpl_mclk_config.h](https://github.com/adafruit/circuitpython/blob/master/ports/atmel-samd/asf4_conf/samd51/hpl_mclk_config.h)
 ````C
 // CPU Clock source: <GCLK_PCHCTRL_GEN_GCLK0_Val"> Generic clock generator 0
+// This define is useless (and not used) as GCLK_MAIN (setting CPU, APB, AHB clocks is wired to GCLK0)
 #define CONF_CPU_SRC GCLK_PCHCTRL_GEN_GCLK0_Val
 
 // <i> Prescalar for CPU clock
