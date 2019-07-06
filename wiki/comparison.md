@@ -56,6 +56,6 @@ A few things I still don't get:
 
 - Why the Meowbit TFT is connected thru SPI on the slow bus.... what could be more important than a fast display ?
 - For the sake of simplicity and to save ports, all TFTs are connected thru SPI. Easy but hard to reach more than 30 FPS.
-- For the moment, pygamer is not supported my MicroPython, I'm working on it but...
+- For the moment, pygamer is not supported my MicroPython, I'm working on it but... (CircuitPython is nice but quite slow)
 
 
