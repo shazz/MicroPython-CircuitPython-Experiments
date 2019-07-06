@@ -51,7 +51,7 @@ I personnaly don't own all of them, only the pygamer and the meowbit.
 A few things I still don't get:
 
 - Why the Meowbit TFT is connected thru SPI on the slow bus.... what could be more important than a fast display ?
-- For the sake of simplicity and to save ports, all TFTs are connected thru SPI. Easy but hard to reach more than 30 FPS. A parallel or a LVDS interface would have been so cool...
+- For the sake of simplicity and to save ports, all TFTs are connected thru SPI. Easy but hard to reach more than 30 FPS. A paralell , a LVDS or a MIPI-DSI interface would have been so cool...
 - For the moment, pygamer is not supported my MicroPython, I'm working on it but... (CircuitPython is nice but quite slow)
 
 
