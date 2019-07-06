@@ -35,6 +35,7 @@ I personnaly don't own all of them, only the pygamer and the meowbit.
 | TinyCLR | No | No | No | No | Maybe |
 | Dimensions | 101.6x60.0x19.5 (mm) | 85.7x54.6x 10.0 (mm) | 85.7x54.6x 10.0 (mm) | 52x76x12(mm) | ? |
 | Debug | SWD | SWD | SWD | SWD | ? |
+| My ranking | 1st | 4rd | 3rd | 2nd | 5th
 
 ### Personal Opinion
 
