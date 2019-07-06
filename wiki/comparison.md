@@ -22,7 +22,7 @@ I personnaly don't own all of them, only the pygamer and the meowbit.
 | Accelerometer / gyro | Triple Axis | No | Triple Axis | mp6050 | Yes |
 | Light Sensor | Yes | Yes | Yes | Yes | ? |
 | Temperature Sensor | No | No | No | Yes | ? |
-| DAC | Yes | Yes | Yes | No | No |
+| Audio output | DAC 12bits | DAC 12bits | DAC 12bits | PWM | PWM |
 | Speaker | Connector | Buzzer | Buzzer | Buzzer | Buzzer |
 | Headphone jack | Yes | Yes | Yes | No | No |
 | JADAC | No | No | No | Yes | Yes |
@@ -40,13 +40,9 @@ I personnaly don't own all of them, only the pygamer and the meowbit.
 ### Personal Opinion
 
 - From a pure technical point of view, I really like the pygamer, more than 2 times more performant (RAM and Clock) than the STM32F4
-
 - Something nice for demoscene compos, the SAMD51 based boards have a 12bits audio DAC and the pygamer headphones and speaker connectors.
-
 - Then.. from a developper point of view, the Meowbit is great, I prefer MicroPython over CircuitPython and the STM32F4 is easier to code than the ATSAMD51.
-
 - Without removable storage (SD), I found the other baords less interesting. 
-
 - Overall, the brainpad is quite limited and the most expensive so not a good deal.
 
 
@@ -55,7 +51,7 @@ I personnaly don't own all of them, only the pygamer and the meowbit.
 A few things I still don't get:
 
 - Why the Meowbit TFT is connected thru SPI on the slow bus.... what could be more important than a fast display ?
-- For the sake of simplicity and to save ports, all TFTs are connected thru SPI. Easy but hard to reach more than 30 FPS.
+- For the sake of simplicity and to save ports, all TFTs are connected thru SPI. Easy but hard to reach more than 30 FPS. A parallel or a LVDS interface would have been so cool...
 - For the moment, pygamer is not supported my MicroPython, I'm working on it but... (CircuitPython is nice but quite slow)
 
 
