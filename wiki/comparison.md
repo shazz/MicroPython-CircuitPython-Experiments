@@ -38,7 +38,9 @@ I personnaly don't own all of them, only the pygamer and the meowbit.
 
 ### Personal Opinion
 
-- From a pure technical point of view, I really like the pygamer, more than 2 times more performant (RAM and Clock) than the STM32 and... something nice for demoscene compos, a 12bits audio DAC.
+- From a pure technical point of view, I really like the pygamer, more than 2 times more performant (RAM and Clock) than the STM32F4
+
+- Something nice for demoscene compos, the SAMD51 based boards have a 12bits audio DAC and the pygamer headphones and speaker connectors.
 
 - Then.. from a developper point of view, the Meowbit is great, I prefer MicroPython over CircuitPython and the STM32F4 is easier to code than the ATSAMD51.
 
@@ -47,6 +49,12 @@ I personnaly don't own all of them, only the pygamer and the meowbit.
 - Overall, the brainpad is quite limited and the most expensive so not a good deal.
 
 
+### Some regrets
 
+A few things I still don't get:
+
+- Why the Meowbit TFT is connected thru SPI on the slow bus.... what could be more important than a fast display ?
+- For the sake of simplicity and to save ports, all TFTs are connected thru SPI. Easy but hard to reach more than 30 FPS.
+- For the moment, pygamer is not supported my MicroPython, I'm working on it but...
 
 
