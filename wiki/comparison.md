@@ -1,0 +1,32 @@
+## Boards comparison
+
+| Features | Pygamer | Pybadge LC | Pybadge | Meowbit | Brainpad arcade |
+|:----------------------:|:-------------------------------------------:|:-------------------------------------------:|:-------------------------------------------:|:----------------------------------------------:|:-----------------------:|
+| Manufacturer | Adafruit | Adafruit | Adafruit | Kittenbot | GHI |
+| Price | $39.95 | $24.95 | $34.95 | $39.90 | $49.95 |
+| MCU Manufacturer | Atmel | Atmel | Atmel | ST | ST |
+| MCU Type | SAMD51 | SAMD51 | SAMD51 | STM32 | STM32 |
+| MCU Ref | ATSAMD51J19 | ATSAMD51J19 | ATSAMD51J19 | STM32F401RET6 | STM32F401 |
+| MCU Max Freq | 200 MHz | 200 MHz | 200 MHz | 84 MHz | 84 MHz |
+| RAM | 192 KB | 192 KB | 192 KB | 96 KB | 96 KB |
+| TFT | ST7075R | ST7075R | ST7075R | ST7735 | ST7735 ? |
+| Screen Resolution | 1.8" 160x128, RGB565 with dimming backlight | 1.8" 160x128, RGB565 with dimming backlight | 1.8" 160x128, RGB565 with dimming backlight | 1.8" 160x128, RGB565 without dimming backlight | 1.8" 160x128 |
+| Int Flash (bootloader) | 512 KB | 512 KB | 512 KB | 512 KB | 512 KB |
+| Ext Flash | 8 MB (QSPI) | 2 MB (SPI) | 2 MB (SPI) | 2 MB (SPI) for MP and 4 MB (SPI) for U2F | ? |
+| SD Cards | Micro SD | No | No | SD | No |
+| Accelerometer / gyro | Triple Axis | No | Triple Axis | mp6050 | Yes |
+| Light Sensor | Yes | Yes | Yes | Yes | ? |
+| Temperature Sensor | No | No | No | Yes | ? |
+| DAC | Yes | Yes | Yes | No | No |
+| Speaker | Connector | Buzzer | Buzzer | Buzzer | Buzzer |
+| Headphone jack | Yes | Yes | Yes | No | No |
+| JADAC | No | No | No | Yes | Yes |
+| Battery | LiPo connector | LiPo connector | LiPo connector | LiPo connector | 3 AAA |
+| Extensions | 2 FeatherWings strips1 JST1 I2C Grove | No | 2 FeatherWings strips1 JST1 I2C Grove | BBCMicro 40 pins goldfinger | D1-D7/PWR/3v3/GNDS1, S2 |
+| Arduino | Yes (+ Arcada) | Yes (+ Arcada) | Yes (+ Arcada) | No | No |
+| Makecode Arcade | Yes | Yes | Yes | Yes | Yes |
+| Micropython | Not yet | Not yet | Not yet | Yes | No |
+| CircuitPython | Yes | Yes | Yes | No | No |
+| TinyCLR | No | No | No | No | Maybe |
+| Dimensions | 101.6x60.0x19.5 (mm) | 85.7x54.6x 10.0 (mm) | 85.7x54.6x 10.0 (mm) | 52x76x12(mm) | ? |
+| Debug | SWD | SWD | SWD | SWD | ? |
