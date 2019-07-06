@@ -1,5 +1,10 @@
 ## Boards comparison
 
+I did a quick comparison of some cool boards currently sole (July 2019).
+I personnaly don't own all of them, only the pygamer and the meowbit.
+
+### Table
+
 | Features | Pygamer | Pybadge LC | Pybadge | Meowbit | Brainpad arcade |
 |:----------------------:|:-------------------------------------------:|:-------------------------------------------:|:-------------------------------------------:|:----------------------------------------------:|:-----------------------:|
 | Manufacturer | Adafruit | Adafruit | Adafruit | Kittenbot | GHI |
@@ -30,3 +35,18 @@
 | TinyCLR | No | No | No | No | Maybe |
 | Dimensions | 101.6x60.0x19.5 (mm) | 85.7x54.6x 10.0 (mm) | 85.7x54.6x 10.0 (mm) | 52x76x12(mm) | ? |
 | Debug | SWD | SWD | SWD | SWD | ? |
+
+### Personal Opinion
+
+- From a pure technical point of view, I really like the pygamer, more than 2 times more performant (RAM and Clock) than the STM32 and... something nice for demoscene compos, a 12bits audio DAC.
+
+- Then.. from a developper point of view, the Meowbit is great, I prefer MicroPython over CircuitPython and the STM32F4 is easier to code than the ATSAMD51.
+
+- Without removable storage (SD), I found the other baords less interesting. 
+
+- Overall, the brainpad is quite limited and the most expensive so not a good deal.
+
+
+
+
+
