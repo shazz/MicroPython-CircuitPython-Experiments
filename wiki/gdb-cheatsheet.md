@@ -1,4 +1,6 @@
-## GDB commands
+# GDB commands
+
+## Program Manipulation
 
 ### Most useful
 
@@ -998,7 +1000,7 @@ show write -- Show writing into executable and core files
 source -- Read commands from a file named FILE
 quit -- Exit gdb
 alias -- Define a new command that is an alias of an existing command
-```
+````
 
 ### Others
 
