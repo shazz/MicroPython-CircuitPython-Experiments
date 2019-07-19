@@ -1,5 +1,7 @@
 ## GDB commands
 
+### Most useful
+
 ````
 append -- Append target code/data to a local file
 append binary -- Append target code/data to a raw binary file
@@ -32,7 +34,11 @@ output -- Like "print" but don't put in value history and don't print newline
 ptype -- Print definition of type TYPE
 
 disassemble -- Disassemble a specified section of memory
+````
 
+### Others
+
+````
 dump -- Dump target code/data to a local file
 dump binary -- Write target code/data to a raw binary file
 dump binary memory -- Write contents of memory to a raw binary file
@@ -87,7 +93,6 @@ set check -- Set the status of the type/range checker
 set check range -- Set range checking
 set check type -- Set strict type checking
 set circular-trace-buffer -- Set target's use of circular trace buffer
---Type <RET> for more, q to quit, c to continue without paging--
 set code-cache -- Set cache use for code segment access
 set coerce-float-to-double -- Set coercion of floats to doubles when calling functions
 set compile-args -- Set compile command GCC command-line arguments
@@ -127,7 +132,6 @@ set debug observer -- Set observer debugging
 set debug overload -- Set debugging of C++ overloading
 set debug parser -- Set parser debugging
 set debug py-unwind -- Set Python unwinder debugging
---Type <RET> for more, q to quit, c to continue without paging--
 set debug record -- Set debugging of record/replay feature
 set debug remote -- Set debugging of remote protocol
 set debug separate-debug-file -- Set printing of separate debug info file search debug
@@ -167,7 +171,6 @@ set extended-prompt -- Set the extended prompt
 set extension-language -- Set mapping between filename extension and source language
 set filename-display -- Set how to display filenames
 set follow-exec-mode -- Set debugger response to a program call of exec
---Type <RET> for more, q to quit, c to continue without paging--
 set follow-fork-mode -- Set debugger response to a program call of fork or vfork
 set frame-filter -- Prefix command for 'set' frame-filter related operations
 set frame-filter priority -- GDB command to set the priority of the specified frame-filter
@@ -207,7 +210,6 @@ set may-insert-tracepoints -- Set permission to insert tracepoints in the target
 set may-interrupt -- Set permission to interrupt or signal the target
 set may-write-memory -- Set permission to write into target memory
 set may-write-registers -- Set permission to write into registers
---Type <RET> for more, q to quit, c to continue without paging--
 set mem -- Memory regions settings
 set mem inaccessible-by-default -- Set handling of unknown memory regions
 set mi-async -- Set whether MI asynchronous mode is enabled
@@ -287,7 +289,6 @@ set remote breakpoint-commands-packet -- Set use of remote protocol `BreakpointC
 set remote btrace-conf-bts-size-packet -- Set use of remote protocol `Qbtrace-conf:bts:size' (btrace-conf-bts-size) packet
 set remote btrace-conf-pt-size-packet -- Set use of remote protocol `Qbtrace-conf:pt:size' (btrace-conf-pt-size) packet
 set remote catch-syscalls-packet -- Set use of remote protocol `QCatchSyscalls' (catch-syscalls) packet
---Type <RET> for more, q to quit, c to continue without paging--
 set remote conditional-breakpoints-packet -- Set use of remote protocol `ConditionalBreakpoints' (conditional-breakpoints) packet
 set remote conditional-tracepoints-packet -- Set use of remote protocol `ConditionalTracepoints' (conditional-tracepoints) packet
 set remote ctrl-c-packet -- Set use of remote protocol `vCtrlC' (ctrl-c) packet
@@ -443,9 +444,11 @@ set verbose -- Set verbosity
 set watchdog -- Set watchdog timer
 set width -- Set number of characters where GDB should wrap lines of its output
 set write -- Set writing into executable and core files
+````
 
 ## control
 
+````
 start -- Start the debugged program stopping at the beginning of the main procedure
 advance -- Continue the program up to the given location (same form as args for break command)
 continue -- Continue program being debugged
@@ -508,12 +511,11 @@ thread apply -- Apply a command to a list of threads
 thread apply all -- Apply a command to all threads
 thread find -- Find threads that match a regular expression
 thread name -- Set the current thread's name
-
-
+````
 
 ## Status
 
-
+````
 info -- Generic command for showing things about the program being debugged
 info address -- Describe where symbol SYM is stored
 info all-registers -- List of all registers and their contents
@@ -986,15 +988,21 @@ show warranty -- Various kinds of warranty you do not have
 show watchdog -- Show watchdog timer
 show width -- Show number of characters where GDB should wrap lines of its output
 show write -- Show writing into executable and core files
+````
 
+## GDB internals
 
-## Commands
+### Most useful
 
+````
 source -- Read commands from a file named FILE
 quit -- Exit gdb
 alias -- Define a new command that is an alias of an existing command
+```
 
+### Others
 
+````
 ! -- Execute the rest of the line as a shell command
 add-auto-load-safe-path -- Add entries to the list of directories from which it is safe to auto-load files
 add-auto-load-scripts-directory -- Add entries to the list of directories from which to load auto-loaded scripts
@@ -1021,9 +1029,13 @@ overlay unmap-overlay -- Assert that an overlay section is unmapped
 shell -- Execute the rest of the line as a shell command
 up-silently -- Same as the `up' command
 while -- Execute nested commands WHILE the conditional expression is non zero
+````
 
-# breakpoints
+## breakpoints
 
+### Most useful
+
+````
 awatch -- Set a watchpoint for an expression
 break -- Set breakpoint at specified location
 clear -- Clear breakpoint at specified location
@@ -1034,8 +1046,11 @@ delete breakpoints -- Delete some breakpoints or auto-display expressions
 delete display -- Cancel some expressions to be displayed when program stops
 save breakpoints -- Save current breakpoint definitions as a script
 watch -- Set a watchpoint for an expression
+````
 
+### Others
 
+````
 break-range -- Set a breakpoint for an address range
 catch -- Set catchpoints to catch events
 catch assert -- Catch failed Ada assertions
